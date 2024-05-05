@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos en Tiempo Real</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Lista de Productos en Tiempo Real</h1>
+
+        <div class="row">
+            <div class="col-12">
+                <ul id="product-list" class="list-group">
+                    {{#each productos}}
+                        <li class="list-group-item d-flex justify-content-between align-items-center" id="product-{{this.id}}">
+                            {{this.title}} - ${{this.price}}
+                            <button class="btn btn-danger deleteProduct" data-id="{{this.id}}">Eliminar</button>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+
+        <form id="addProductForm" class="mt-4">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="title">Título:</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="description">Descripción:</label>
+                    <input type="text" class="form-control" id="description" name="description" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="price">Precio:</label>
+                    <input type="number" class="form-control" id="price" name="price" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="thumbnail">Imagen (URL):</label>
+                    <input type="text" class="form-control" id="thumbnail" name="thumbnail" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="code">Código:</label>
+                    <input type="text" class="form-control" id="code" name="code" required>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="stock">Stock:</label>
+                    <input type="number" class="form-control" id="stock" name="stock" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Producto</button>
+        </form>
+    </div>
+
+    <script>
+        const socket = io();
+
+        document.getElementById('addProductForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                price: document.getElementById('price').value,
+                thumbnail: document.getElementById('thumbnail').value,
+                code: document.getElementById('code').value,
+                stock: document.getElementById('stock').value,
+            };
+
+            fetch('/api/products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Producto agregado:', data);
+                socket.emit('updateRequest'); // Puedes emitir este evento para solicitar la actualización de la lista
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+
+        socket.on('updateProducts', (productos) => {
+            updateProductList(productos);
+        });
+
+        function updateProductList(productos) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+
+            productos.forEach((producto) => {
+                const li = document.createElement('li');
+                li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+                li.id = `product-${producto.id}`;
+                li.innerHTML = `${producto.title} - $${producto.price} <button class="btn btn-danger deleteProduct" data-id="${producto.id}">Eliminar</button>`;
+                productList.appendChild(li);
+            });
+
+            addDeleteProductListeners();
+        }
+
+        function addDeleteProductListeners() {
+            document.querySelectorAll('.deleteProduct').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    fetch(`/api/products/${productId}`, { method: 'DELETE' })
+                    .then(response => {
+                        if(response.ok) {
+                            console.log('Producto eliminado:', productId);
+                            socket.emit('updateRequest'); // Solicita al servidor que emita 'updateProducts' tras eliminar
+                        }
+                        return response.json();
+                    })
+                    .then(data => console.log(data))
+                    .catch(error => console.error('Error:', error));
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', addDeleteProductListeners);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+[
+  {
+    "id": 3,
+    "title": "producto prueba2",
+    "description": "Este es un producto prueba2",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "XYZ456",
+    "stock": 25
+  },
+  {
+    "id": 3,
+    "title": "producto prueba",
+    "description": "Este es un producto prueba",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "ABC123",
+    "stock": 25
+  },
+  {
+    "id": 4,
+    "title": "producto prueba2",
+    "description": "Este es un producto prueba2",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "XYZ456",
+    "stock": 25
+  },
+  {
+    "id": 5,
+    "title": "producto prueba",
+    "description": "Este es un producto prueba",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "ABC123",
+    "stock": 25
+  },
+  {
+    "id": 6,
+    "title": "producto prueba2",
+    "description": "Este es un producto prueba2",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "XYZ456",
+    "stock": 25
+  },
+  {
+    "id": 7,
+    "title": "Producto de prueba 7",
+    "description": "Descripción del producto de prueba 7",
+    "price": 93,
+    "thumbnail": "imagen7.jpg",
+    "code": "CODE7",
+    "stock": 34
+  },
+  {
+    "id": 8,
+    "title": "Producto de prueba 8",
+    "description": "Descripción del producto de prueba 8",
+    "price": 8,
+    "thumbnail": "imagen8.jpg",
+    "code": "CODE8",
+    "stock": 8
+  },
+  {
+    "id": 9,
+    "title": "Producto de prueba 9",
+    "description": "Descripción del producto de prueba 9",
+    "price": 66,
+    "thumbnail": "imagen9.jpg",
+    "code": "CODE9",
+    "stock": 48
+  },
+  {
+    "id": 10,
+    "title": "Producto de prueba 10",
+    "description": "Descripción del producto de prueba 10",
+    "price": 27,
+    "thumbnail": "imagen10.jpg",
+    "code": "CODE10",
+    "stock": 7
+  },
+  {
+    "id": 2,
+    "title": "producto prueba15",
+    "description": "Este es un producto prueba15",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "XYZ4565",
+    "stock": 25
+  },
+  {
+    "id": 1000,
+    "title": "producto prueba1000",
+    "description": "Este es un producto prueba1000",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "XYZ4565548",
+    "stock": 25
+  },
+  {
+    "id": 1000,
+    "title": "producto prueba1000",
+    "description": "Este es un producto prueba1000",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "XYZ4565548",
+    "stock": 25
+  },
+  {
+    "id": 1000,
+    "title": "producto prueba1000",
+    "description": "Este es un producto prueba1000",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "XYZ4565548",
+    "stock": 25
+  },
+  {
+    "id": 1000,
+    "title": "producto prueba1000",
+    "description": "Este es un producto prueba1000",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "XYZ4565548",
+    "stock": 25
+  },
+  {
+    "id": 1000,
+    "title": "producto prueba1000",
+    "description": "Este es un producto prueba1000",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "XYZ4565548",
+    "stock": 25
+  },
+  {
+    "id": 1000,
+    "title": "producto prueba1000",
+    "description": "Este es un producto prueba1000",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "XYZ4565548",
+    "stock": 25
+  }
+]
