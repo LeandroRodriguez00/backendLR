@@ -80,7 +80,7 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Producto agregado:', data);
-                socket.emit('updateRequest'); // Puedes emitir este evento para solicitar la actualización de la lista
+                socket.emit('updateRequest'); 
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -114,7 +114,7 @@
                     .then(response => {
                         if(response.ok) {
                             console.log('Producto eliminado:', productId);
-                            socket.emit('updateRequest'); // Solicita al servidor que emita 'updateProducts' tras eliminar
+                            socket.emit('updateRequest'); 
                         }
                         return response.json();
                     })
